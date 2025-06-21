@@ -9,46 +9,222 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="zh-Hant">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			/* Modern TaskyVenture Theme */
+			body {
+				margin: 0;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				min-height: 100vh;
+				color: #333;
+			}
+
+			main {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+
+			.hero-section {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				padding: 4rem 2rem;
+				text-align: center;
+				border-radius: 20px;
+				box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+				margin-bottom: 3rem;
+			}
+
+			.hero-title {
+				font-size: 3.5rem;
+				font-weight: 800;
+				margin-bottom: 1rem;
+				text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+			}
+
+			.hero-subtitle {
+				font-size: 1.3rem;
+				opacity: 0.9;
+				margin-bottom: 2rem;
+				line-height: 1.6;
+			}
+
+			.content-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+				margin: 3rem 0;
+			}
+
+			.feature-card {
+				background: white;
+				padding: 2rem;
+				border-radius: 15px;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.feature-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+			}
+
+			.feature-icon {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.feature-title {
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: #4c51bf;
+				margin-bottom: 1rem;
+			}
+
+			.feature-desc {
+				color: #666;
+				line-height: 1.6;
+			}
+
+			.cta-section {
+				background: white;
+				padding: 3rem;
+				border-radius: 15px;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+				text-align: center;
+				margin: 3rem 0;
+			}
+
+			.cta-title {
+				font-size: 2rem;
+				color: #4c51bf;
+				margin-bottom: 1.5rem;
+				font-weight: 700;
+			}
+
+			.btn-primary {
+				display: inline-block;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				padding: 1rem 2rem;
+				border-radius: 10px;
+				text-decoration: none;
+				font-weight: 600;
+				font-size: 1.1rem;
+				transition: all 0.3s ease;
+				margin: 0.5rem;
+			}
+
+			.btn-primary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+				color: white;
+			}
+
+			.btn-secondary {
+				display: inline-block;
+				background: white;
+				color: #4c51bf;
+				border: 2px solid #4c51bf;
+				padding: 1rem 2rem;
+				border-radius: 10px;
+				text-decoration: none;
+				font-weight: 600;
+				font-size: 1.1rem;
+				transition: all 0.3s ease;
+				margin: 0.5rem;
+			}
+
+			.btn-secondary:hover {
+				background: #4c51bf;
+				color: white;
+				transform: translateY(-2px);
+			}
+
+			@media (max-width: 768px) {
+				.hero-title {
+					font-size: 2.5rem;
+				}
+				
+				.hero-section {
+					padding: 3rem 1.5rem;
+				}
+				
+				main {
+					padding: 1rem;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🎮 歡迎來到 TaskyVenture 博客！</h1>
-			<p>
-				這裡是 <strong>TaskyVenture</strong> 的官方博客，我們專注於透過遊戲化的任務管理系統，
-				讓孩子們在完成日常任務的過程中培養責任感、目標設定能力和自律性。
-			</p>
-			<p>
-				我們的團隊由教育專家、兒童心理學家、軟件工程師和用戶體驗設計師組成，
-				致力於為家長和孩子提供最優質的教育工具和內容。
-			</p>
-			
-			<h2>🌟 博客內容</h2>
-			<p>在我們的博客中，你將發現：</p>
-			<ul>
-				<li>🎯 <strong>教育方法</strong> - 科學的兒童教育理念和實用技巧</li>
-				<li>👨‍👩‍👧‍👦 <strong>親子互動</strong> - 促進家庭溝通的有效方法</li>
-				<li>🎮 <strong>遊戲化教育</strong> - 如何讓學習變得更有趣</li>
-				<li>🔧 <strong>產品使用</strong> - TaskyVenture 功能介紹和使用技巧</li>
-				<li>📈 <strong>成長案例</strong> - 真實用戶的成功經驗分享</li>
-			</ul>
+			<!-- Hero Section -->
+			<section class="hero-section">
+				<h1 class="hero-title">🎮 TaskyVenture 博客</h1>
+				<p class="hero-subtitle">
+					透過遊戲化任務管理，讓孩子愛上學習和成長<br>
+					分享教育理念、育兒技巧和產品更新
+				</p>
+			</section>
 
-			<h2>🚀 開始探索</h2>
-			<p>
-				📚 <a href="/blog" style="color: #0066cc; font-weight: bold;">瀏覽所有文章</a> - 查看我們的最新內容
-			</p>
-			<p>
-				🎯 <a href="https://taskyventure.com" style="color: #0066cc; font-weight: bold;">立即使用 TaskyVenture</a> - 開始你的遊戲化學習之旅
-			</p>
-			<p>
-				💌 <a href="mailto:contact@taskyventure.com" style="color: #0066cc; font-weight: bold;">聯絡我們</a> - 有任何問題或建議歡迎與我們交流
-			</p>
+			<!-- Features Grid -->
+			<div class="content-grid">
+				<div class="feature-card">
+					<div class="feature-icon">🎯</div>
+					<h3 class="feature-title">教育方法</h3>
+					<p class="feature-desc">科學的兒童教育理念和實用技巧，幫助家長更好地引導孩子成長</p>
+				</div>
 
-			<h2>📝 最新文章</h2>
-			<p>
-				我們會定期更新內容，分享最新的教育洞察和產品功能。
-				<a href="/blog" style="color: #0066cc; font-weight: bold;">點擊這裡查看所有文章</a>！
-			</p>
+				<div class="feature-card">
+					<div class="feature-icon">👨‍👩‍👧‍👦</div>
+					<h3 class="feature-title">親子互動</h3>
+					<p class="feature-desc">促進家庭溝通的有效方法，建立溫馨和諧的親子關係</p>
+				</div>
+
+				<div class="feature-card">
+					<div class="feature-icon">🎮</div>
+					<h3 class="feature-title">遊戲化教育</h3>
+					<p class="feature-desc">如何讓學習變得更有趣，激發孩子的學習動機和創造力</p>
+				</div>
+
+				<div class="feature-card">
+					<div class="feature-icon">🔧</div>
+					<h3 class="feature-title">產品使用</h3>
+					<p class="feature-desc">TaskyVenture 功能介紹和使用技巧，讓你充分發揮平台優勢</p>
+				</div>
+
+				<div class="feature-card">
+					<div class="feature-icon">📈</div>
+					<h3 class="feature-title">成長案例</h3>
+					<p class="feature-desc">真實用戶的成功經驗分享，看看其他家庭的教育成果</p>
+				</div>
+
+				<div class="feature-card">
+					<div class="feature-icon">📱</div>
+					<h3 class="feature-title">技術更新</h3>
+					<p class="feature-desc">最新功能發布和平台改進，保持最佳的使用體驗</p>
+				</div>
+			</div>
+
+			<!-- CTA Section -->
+			<section class="cta-section">
+				<h2 class="cta-title">🚀 開始你的教育之旅</h2>
+				<p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
+					準備好讓孩子的學習變得更加精彩了嗎？
+				</p>
+				<a href="/blog" class="btn-primary">📚 瀏覽所有文章</a>
+				<a href="https://taskyventure.com" class="btn-secondary">🎯 使用 TaskyVenture</a>
+			</section>
+
+			<section class="cta-section" style="background: #f8fafc;">
+				<h2 class="cta-title">📝 定期更新內容</h2>
+				<p style="color: #666; line-height: 1.6;">
+					我們會定期分享最新的教育洞察、產品功能和使用技巧。<br>
+					歡迎收藏本站，或透過社群媒體關注我們的更新！
+				</p>
+				<a href="mailto:contact@taskyventure.com" class="btn-primary">💌 聯絡我們</a>
+			</section>
 		</main>
 		<Footer />
 	</body>

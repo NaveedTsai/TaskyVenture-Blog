@@ -8,10 +8,10 @@ import { Image } from 'astro:assets';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category, tags, author, readingTime, ageGroup, difficulty } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="zh-Hant">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
@@ -19,38 +19,132 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				width: calc(100% - 2em);
 				max-width: 100%;
 				margin: 0;
+				background: var(--gradient-light);
+				min-height: 100vh;
 			}
+			
+			.hero-section {
+				background: var(--gradient-primary);
+				color: white;
+				padding: var(--space-xl) var(--space-md);
+				text-align: center;
+				margin-bottom: var(--space-lg);
+			}
+			
 			.hero-image {
 				width: 100%;
+				max-width: 800px;
+				margin: var(--space-lg) auto;
 			}
+			
 			.hero-image img {
 				display: block;
 				margin: 0 auto;
-				border-radius: 12px;
+				border-radius: 16px;
+				box-shadow: var(--box-shadow-lg);
+				width: 100%;
+			}
+			
+			.article-container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 0 var(--space-md);
+			}
+			
+			.article-header {
+				background: white;
+				padding: var(--space-lg);
+				border-radius: 16px;
 				box-shadow: var(--box-shadow);
+				margin-bottom: var(--space-lg);
 			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+			
+			.article-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space-sm);
+				margin-bottom: var(--space-md);
+				font-size: 0.9rem;
 			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
+			
+			.meta-item {
+				background: var(--gradient-primary);
+				color: white;
+				padding: var(--space-xs) var(--space-sm);
+				border-radius: 20px;
+				font-weight: 500;
 			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
+			
+			.meta-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space-xs);
+				margin-top: var(--space-sm);
 			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+			
+			.tag {
+				background: #e2e8f0;
+				color: var(--primary-dark);
+				padding: 0.25rem 0.75rem;
+				border-radius: 12px;
+				font-size: 0.8rem;
+				font-weight: 500;
 			}
+			
+			.article-title {
+			}
+			
+			.article-title h1 {
+				margin: 0;
+				font-size: 2.5rem;
+				background: var(--gradient-primary);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				line-height: 1.2;
+			}
+			
+			.article-content {
+				background: white;
+				padding: var(--space-xl);
+				border-radius: 16px;
+				box-shadow: var(--box-shadow);
+				line-height: 1.8;
+				font-size: 1.1rem;
+			}
+			
+			.date-info {
+				color: var(--gray);
+				font-size: 0.9rem;
+				margin-bottom: var(--space-sm);
+			}
+			
 			.last-updated-on {
 				font-style: italic;
+				margin-top: var(--space-xs);
+			}
+			
+			/* Responsive design */
+			@media (max-width: 768px) {
+				.hero-section {
+					padding: var(--space-lg) var(--space-sm);
+				}
+				
+				.article-header {
+					padding: var(--space-md);
+				}
+				
+				.article-content {
+					padding: var(--space-md);
+				}
+				
+				.article-title h1 {
+					font-size: 2rem;
+				}
+				
+				.article-meta {
+					justify-content: center;
+				}
 			}
 		</style>
 	</head>
@@ -58,28 +152,58 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<body>
 		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+			<!-- Hero Section -->
+			<div class="hero-section">
+				<div class="article-container">
+					{heroImage && (
+						<div class="hero-image">
+							<Image width={800} height={400} src={heroImage} alt={title} />
 						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
+					)}
 				</div>
-			</article>
+			</div>
+
+			<!-- Article Content -->
+			<div class="article-container">
+				<article>
+					<!-- Article Header -->
+					<header class="article-header">
+						<div class="article-meta">
+							{category && <span class="meta-item">📚 {category}</span>}
+							{author && <span class="meta-item">👤 {author}</span>}
+							{readingTime && <span class="meta-item">⏱️ {readingTime} 分鐘</span>}
+							{ageGroup && <span class="meta-item">👶 {ageGroup}</span>}
+							{difficulty && <span class="meta-item">📊 {difficulty}</span>}
+						</div>
+						
+						<div class="article-title">
+							<h1>{title}</h1>
+						</div>
+						
+						<div class="date-info">
+							<FormattedDate date={pubDate} />
+							{updatedDate && (
+								<div class="last-updated-on">
+									最後更新於 <FormattedDate date={updatedDate} />
+								</div>
+							)}
+						</div>
+						
+						{tags && tags.length > 0 && (
+							<div class="meta-tags">
+								{tags.map((tag: string) => (
+									<span class="tag">#{tag}</span>
+								))}
+							</div>
+						)}
+					</header>
+
+					<!-- Article Content -->
+					<div class="article-content">
+						<slot />
+					</div>
+				</article>
+			</div>
 		</main>
 		<Footer />
 	</body>
