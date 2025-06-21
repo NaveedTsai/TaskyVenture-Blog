@@ -1,7 +1,6 @@
 ---
 name: 'TaskyVenture 團隊'
 bio: '致力於透過遊戲化教育和創新科技，讓每個孩子都能快樂學習、健康成長。我們的團隊由教育專家、兒童心理學家、軟件工程師和用戶體驗設計師組成。'
-avatar: '../../assets/team-avatar.jpg'
 social:
   email: 'contact@taskyventure.com'
   twitter: '@TaskyVenture'
