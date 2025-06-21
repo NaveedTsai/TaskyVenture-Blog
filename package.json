@@ -6,7 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "new-post": "node scripts/create-post.js",
+    "format": "prettier --write .",
+    "lint": "astro check",
+    "deploy": "npm run build && npm run preview"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
@@ -14,5 +18,9 @@
     "@astrojs/sitemap": "^3.4.1",
     "astro": "^5.10.0",
     "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.14.0"
   }
 }
